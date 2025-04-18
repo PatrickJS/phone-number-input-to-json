@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Number Input Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "phone-number-lib": "./dist/index.js"
+      }
+    }
+  </script>
+  <!-- Single Module Script -->
+  <script type="module" src="./example.js"></script>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+
+  <!-- Root element declares its template -->
+  <div id="root" data-template="app-template"></div>
+
+  <!-- Main Application Template -->
+  <template id="app-template">
+    <div class="max-w-md mx-auto p-8">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Phone Number Input</h2>
+
+        <form data-ref="phoneForm" data-event-submit="handleFormSubmit" class="space-y-4">
+          <div class="flex gap-4">
+            <select data-ref="countrySelect" name="countryCode"
+              class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+              <option value="1">US/Canada (+1)</option>
+              <option value="52">Mexico (+52)</option>
+              <option value="44">UK (+44)</option>
+              <option value="61">Australia (+61)</option>
+              <option value="82">South Korea (+82)</option>
+              <option value="81">Japan (+81)</option>
+            </select>
+            <input type="text" data-ref="phoneInput" name="phoneNumber" placeholder="(555) 555-5555"
+              data-event-input="handlePhoneInput" data-event-paste="handlePhonePaste" data-event-blur="handlePhoneBlur"
+              data-event-keydown="handlePhoneKeydown"
+              class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+          </div>
+
+          <div data-ref="hintsDiv" class="text-sm text-gray-500 hidden">
+            <ul class="list-disc list-inside space-y-1">
+              <li>Enter a valid phone number for the selected country</li>
+              <li>US/Canada: 10 digits (e.g., (555) 555-5555)</li>
+              <li>Mexico: 10 digits after +52</li>
+              <li>UK: 10 digits after +44</li>
+              <li>Australia: 9 digits after +61</li>
+              <li>South Korea: 9 digits after +82</li>
+              <li>Japan: 9 digits after +81</li>
+            </ul>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Validate Phone Number
+          </button>
+
+          <div data-ref="resultDiv"
+            class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 text-sm font-mono hidden"></div>
+        </form>
+      </div>
+    </div>
+  </template>
+
+  <!-- Result Templates (Ensure these are present) -->
+  <template id="valid-result-template">
+    <div class="text-green-600 font-medium mb-2">Valid Phone Number</div>
+    <pre class="text-gray-700" data-ref="jsonData"></pre> <!-- Ref for dynamic data -->
+  </template>
+
+  <template id="invalid-result-template">
+    <div class="text-red-600 font-medium">Invalid phone number</div>
+    <div class="text-gray-500 text-sm mt-1">Please enter a valid phone number according to hints.</div>
+  </template>
+
+  <template id="error-result-template">
+    <div class="text-red-600 font-medium" data-ref="errorMessage">Error validating number</div>
+  </template>
+
+</body>
+
+</html>
