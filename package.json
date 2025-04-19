@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc && esbuild src/browser.js --bundle --outfile=dist/browser.js --format=iife --global-name=PhoneNumberParser",
+    "build": "tsc && esbuild dist/index.js --bundle --outfile=dist/browser.js --format=iife --global-name=PhoneNumberParser",
     "test": "vitest run",
     "test:watch": "vitest",
     "start": "serve . -l 3000",
