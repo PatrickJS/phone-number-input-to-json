@@ -70,6 +70,22 @@ const result2 = parsePhoneNumber('+52 555-555-5555');
    - `825555555555` (South Korea)
    - `815555555555` (Japan)
 
+4. Edge cases and Invalid Inputs Handled:
+   - Empty or whitespace-only strings.
+     - Example: `""`, `"   "`
+   - Input containing multiple '+' signs.
+     - Example: `++15555555555`
+   - Input containing invalid characters.
+     - Examples: `555-abc-5555`, `555_555_5555` (assuming only digits, `+`, `-`, `(`, `)`, `.`, and whitespace are allowed)
+   - Numbers with incorrect digit counts after processing.
+     - Examples: `+1 555 555 555`, `555 555 555`
+   - International format (`+...`) with unknown country codes.
+     - Example: `+999 555-555-5555` (assuming 999 is not a configured code)
+   - Numbers starting with a known country code prefix but with incorrect subsequent digit count.
+     - Example: `1555555555` (missing one digit), `4412345678901` (too many digits)
+   - Standard 10-digit numbers with misplaced separators.
+     - Example: `555-5555-55`
+
 ### Custom Country Codes
 
 You can provide your own country code configuration:
