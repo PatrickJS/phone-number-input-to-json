@@ -19,7 +19,7 @@
     "json",
     "typescript"
   ],
-  "author": "",
+  "author": "github@patrickjs.com",
   "license": "MIT",
   "devDependencies": {
     "serve": "14.2.4",
